@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +34,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
+    // states
+    val expandedState = remember { mutableStateOf(false) } // false is default value
+    val expandedHeight = if (expandedState.value) 48.0.dp else 0.0.dp
+
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
@@ -44,15 +51,20 @@ fun Greeting(name: String) {
             Column(
                 modifier = Modifier
                     .weight(1F)
+                    .padding(bottom = expandedHeight)
             ) {
                 Text(text = "Hello, ")
                 Text(text = "$name!")
             }
 
             OutlinedButton(
-                onClick = { /* no-op */ }
+                colors = buttonColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                    contentColor = MaterialTheme.colorScheme.onBackground
+                ),
+                onClick = { expandedState.value = !expandedState.value }
             ) {
-                Text("Show More")
+                Text(if (expandedState.value) "Show Less" else "Show More")
             }
         }
     }
