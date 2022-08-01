@@ -37,9 +37,13 @@ fun Greeting(name: String) {
 }
 
 @Composable
-private fun MyApp() {
+private fun MyApp(names: List<String> = listOf("Esmeralda", "Hylos")) {
     Surface(color = MaterialTheme.colorScheme.background) {
-        Greeting(name = "Dwi Candra Permana")
+        Column {
+            for (name in names) {
+                Greeting(name = name)
+            }
+        }
     }
 }
 
