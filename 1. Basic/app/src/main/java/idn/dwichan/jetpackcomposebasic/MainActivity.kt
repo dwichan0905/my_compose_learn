@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.MaterialTheme
@@ -56,7 +58,7 @@ fun OnboardingScreen(onContinue: () -> Unit = {}) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Welcome to Basic Codelab!")
+            Text("Welcome to Basic Codelab, DwiChan!")
             Button(
                 modifier = Modifier
                     .padding(24.dp),
@@ -107,7 +109,7 @@ fun Greeting(name: String) {
 }
 
 @Composable
-private fun MyApp(names: List<String> = listOf("Esmeralda", "Hylos")) {
+private fun MyApp(names: List<String> = List(1000) { "Ke-$it" }) {
     var shouldShowOnboarding by remember { mutableStateOf(true) }
 
     if (shouldShowOnboarding) {
@@ -118,8 +120,8 @@ private fun MyApp(names: List<String> = listOf("Esmeralda", "Hylos")) {
         )
     } else {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Column {
-                for (name in names) {
+            LazyColumn {
+                items(items = names) { name ->
                     Greeting(name = name)
                 }
             }
