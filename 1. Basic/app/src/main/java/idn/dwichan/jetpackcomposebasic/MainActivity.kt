@@ -47,7 +47,7 @@ private fun MyApp(names: List<String> = listOf("Esmeralda", "Hylos")) {
     }
 }
 
-@Preview(showBackground = true, name = "Text Preview")
+@Preview(showBackground = true, name = "Text Preview", widthDp = 320)
 @Composable
 fun DefaultPreview() {
     JetpackComposeBasicTheme {
