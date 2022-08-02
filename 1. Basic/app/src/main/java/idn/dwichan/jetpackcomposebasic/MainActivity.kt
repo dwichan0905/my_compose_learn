@@ -96,7 +96,10 @@ fun Greeting(name: String) {
                     .padding(bottom = expandedHeight)
             ) {
                 Text(text = "Hello, ")
-                Text(text = "$name!")
+                Text(
+                    text = "$name!",
+                    style = MaterialTheme.typography.titleLarge
+                )
             }
 
             OutlinedButton(
