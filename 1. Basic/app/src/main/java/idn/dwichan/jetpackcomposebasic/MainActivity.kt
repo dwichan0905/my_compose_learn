@@ -3,7 +3,10 @@ package idn.dwichan.jetpackcomposebasic
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,6 +34,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import idn.dwichan.jetpackcomposebasic.ui.theme.JetpackComposeBasicTheme
@@ -82,9 +86,6 @@ fun OnboardingScreen(onContinue: () -> Unit = {}) {
 fun Greeting(name: String = "This is the name") {
     // states
     val expandedState = remember { mutableStateOf(false) } // false is default value
-    val expandedHeight by animateDpAsState(
-        if (expandedState.value) 48.0.dp else 0.0.dp
-    )
 
     Surface(
         color = MaterialTheme.colorScheme.primary,
@@ -94,18 +95,33 @@ fun Greeting(name: String = "This is the name") {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(24.dp)
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                )
         ) {
             Column(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .weight(1F)
-                    .padding(bottom = expandedHeight)
+                    .padding(16.dp)
             ) {
-                Text(text = "Hello, ")
+                Text(text = stringResource(R.string.label_greeting))
                 Text(
                     text = "$name!",
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .fillMaxWidth()
                 )
+                if (expandedState.value) { // disini atur visibility nya
+                    Text(
+                        text = stringResource(R.string.label_text_long).repeat(5),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
             }
 
             IconButton(

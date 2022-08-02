@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Jetpack Compose Basic</string>
+    <string name="label_greeting">Hello, </string>
+    <string name="label_text_long">Lorem ipsum dolor sit amet consecteteur adispicing elit </string>
 </resources>
