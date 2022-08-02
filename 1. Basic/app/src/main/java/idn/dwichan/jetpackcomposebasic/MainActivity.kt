@@ -12,8 +12,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults.buttonColors
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -103,14 +108,17 @@ fun Greeting(name: String = "This is the name") {
                 )
             }
 
-            OutlinedButton(
-                colors = buttonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.onBackground
-                ),
+            IconButton(
+//                colors = buttonColors(
+//                    containerColor = MaterialTheme.colorScheme.background,
+//                    contentColor = MaterialTheme.colorScheme.onBackground
+//                ),
                 onClick = { expandedState.value = !expandedState.value }
             ) {
-                Text(if (expandedState.value) "Show Less" else "Show More")
+                Icon(
+                    imageVector = if (expandedState.value) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                    contentDescription = null
+                )
             }
         }
     }
