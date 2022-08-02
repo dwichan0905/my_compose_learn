@@ -3,6 +3,7 @@ package idn.dwichan.jetpackcomposebasic
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -75,7 +76,9 @@ fun OnboardingScreen(onContinue: () -> Unit = {}) {
 fun Greeting(name: String) {
     // states
     val expandedState = remember { mutableStateOf(false) } // false is default value
-    val expandedHeight = if (expandedState.value) 48.0.dp else 0.0.dp
+    val expandedHeight by animateDpAsState(
+        if (expandedState.value) 48.0.dp else 0.0.dp
+    )
 
     Surface(
         color = MaterialTheme.colorScheme.primary,
