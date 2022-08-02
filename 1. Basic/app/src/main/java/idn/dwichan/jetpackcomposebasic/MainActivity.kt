@@ -72,8 +72,9 @@ fun OnboardingScreen(onContinue: () -> Unit = {}) {
     }
 }
 
+@Preview(showBackground = true, name = "Greeting List Item")
 @Composable
-fun Greeting(name: String) {
+fun Greeting(name: String = "This is the name") {
     // states
     val expandedState = remember { mutableStateOf(false) } // false is default value
     val expandedHeight by animateDpAsState(
