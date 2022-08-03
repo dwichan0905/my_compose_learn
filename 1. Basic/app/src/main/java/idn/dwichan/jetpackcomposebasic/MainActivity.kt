@@ -85,7 +85,7 @@ fun OnboardingScreen(onContinue: () -> Unit = {}) {
 @Composable
 fun Greeting(name: String = "This is the name") {
     // states
-    val expandedState = remember { mutableStateOf(false) } // false is default value
+    val expandedState = rememberSaveable { mutableStateOf(false) } // false is default value
 
     Surface(
         color = MaterialTheme.colorScheme.primary,
