@@ -207,15 +207,13 @@ private fun landscapeConstraintSet(margin: Dp): ConstraintSet =
 
         constrain(followButton) {
             top.linkTo(profileStats.bottom)
-            start.linkTo(parent.start, margin = 16.dp)
-            end.linkTo(messageButton.start)
+            start.linkTo(image.end, margin = 16.dp)
             width = Dimension.wrapContent
         }
 
         constrain(messageButton) {
             top.linkTo(profileStats.bottom)
             start.linkTo(followButton.end, margin = 16.dp)
-            end.linkTo(parent.end)
             width = Dimension.wrapContent
         }
     }
