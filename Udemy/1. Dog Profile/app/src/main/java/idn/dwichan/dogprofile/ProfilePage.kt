@@ -53,6 +53,8 @@ fun ProfilePage() {
                 messageButton
             ) = createRefs()
 
+            val guideline = createGuidelineFromTop(fraction = 0.25F)
+
             Image(
                 painter = painterResource(id = R.drawable.husky),
                 contentDescription = "Husky",
@@ -65,7 +67,7 @@ fun ProfilePage() {
                         shape = CircleShape
                     )
                     .constrainAs(image) {
-                        top.linkTo(parent.top)
+                        top.linkTo(guideline)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     },
