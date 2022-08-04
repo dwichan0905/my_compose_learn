@@ -1,2 +1,5 @@
 1. Basics
    https://developer.android.com/codelabs/jetpack-compose-basics#0
+
+2. Practice: Compose Basics
+   https://developer.android.com/codelabs/basic-android-kotlin-compose-composables-practice-problems#0
