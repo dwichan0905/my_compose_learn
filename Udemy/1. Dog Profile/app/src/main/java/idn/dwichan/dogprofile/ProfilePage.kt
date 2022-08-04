@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -25,6 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 
 @Composable
 fun ProfilePage() {
@@ -38,13 +39,20 @@ fun ProfilePage() {
                 end = 16.dp
             )
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+        ConstraintLayout(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
         ) {
+            // ConstraintLayout IDs
+            val (
+                image,
+                name,
+                country,
+                profileStats,
+                followButton,
+                messageButton
+            ) = createRefs()
+
             Image(
                 painter = painterResource(id = R.drawable.husky),
                 contentDescription = "Husky",
@@ -55,33 +63,73 @@ fun ProfilePage() {
                         width = 2.dp,
                         color = Color.Red,
                         shape = CircleShape
-                    ),
+                    )
+                    .constrainAs(image) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
                 contentScale = ContentScale.Crop
             )
-            Text(text = "Siberian Husky")
-            Text(text = "Germany")
+            Text(
+                text = "Siberian Husky",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .constrainAs(name) {
+                        top.linkTo(image.bottom)
+                        start.linkTo(image.start)
+                        end.linkTo(image.end)
+                    }
+            )
+            Text(
+                text = "Germany",
+                modifier = Modifier
+                    .constrainAs(country) {
+                        top.linkTo(name.bottom)
+                        start.linkTo(name.start)
+                        end.linkTo(name.end)
+                    }
+            )
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
+                    .constrainAs(profileStats) {
+                        top.linkTo(country.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
             ) {
                 ProfileStats(count = 150, title = "Followers")
                 ProfileStats(count = 120, title = "Following")
                 ProfileStats(count = 10, title = "Posts")
             }
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
+
+            Button(
+                onClick = {  },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
+                    .constrainAs(followButton) {
+                        top.linkTo(profileStats.bottom, margin = 16.dp)
+                        start.linkTo(parent.start)
+                        end.linkTo(messageButton.start)
+                        width = Dimension.wrapContent
+                    }
             ) {
-                Button(onClick = {  }) {
-                    Text(text = "Follow user")
-                }
-                Button(onClick = {  }) {
-                    Text(text = "Message")
-                }
+                Text(text = "Follow user")
+            }
+            Button(
+                onClick = {  },
+                modifier = Modifier
+                    .constrainAs(messageButton) {
+                        top.linkTo(profileStats.bottom, margin = 16.dp)
+                        start.linkTo(followButton.end)
+                        end.linkTo(parent.end)
+                        width = Dimension.wrapContent
+                    }
+            ) {
+                Text(text = "Message")
             }
         }
     }
