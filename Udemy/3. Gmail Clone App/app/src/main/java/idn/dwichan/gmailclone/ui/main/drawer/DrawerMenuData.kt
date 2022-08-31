@@ -1,4 +1,4 @@
-package idn.dwichan.gmailclone.ui.main
+package idn.dwichan.gmailclone.ui.main.drawer
 
 import androidx.annotation.DrawableRes
 import idn.dwichan.gmailclone.R

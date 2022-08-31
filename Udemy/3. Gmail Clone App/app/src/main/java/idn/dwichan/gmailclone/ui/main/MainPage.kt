@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import idn.dwichan.gmailclone.ui.component.HomeAppBar
+import idn.dwichan.gmailclone.ui.main.drawer.MainDrawerMenu
 import idn.dwichan.gmailclone.ui.theme.GmailCloneTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -20,7 +21,8 @@ fun MainPage() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState, coroutineScope) },
-        drawerContent = { MainDrawerMenu(scrollState) }
+        drawerContent = { MainDrawerMenu(scrollState) },
+        bottomBar = { MainBottomNavBar() }
     ) {
 
     }
