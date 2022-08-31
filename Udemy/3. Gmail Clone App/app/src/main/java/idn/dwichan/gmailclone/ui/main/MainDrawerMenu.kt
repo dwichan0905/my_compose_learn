@@ -14,6 +14,30 @@ import idn.dwichan.gmailclone.ui.theme.GmailCloneTheme
 
 @Composable
 fun MainDrawerMenu() {
+    val menuList = listOf(
+        DrawerMenuData.Separator,
+        DrawerMenuData.AllInboxes,
+        DrawerMenuData.Separator,
+        DrawerMenuData.Inbox,
+
+        DrawerMenuData.AllLabels,
+        DrawerMenuData.Starred,
+        DrawerMenuData.Unread,
+        DrawerMenuData.Drafts,
+        DrawerMenuData.Outbox,
+        DrawerMenuData.Sent,
+        DrawerMenuData.Trash,
+        DrawerMenuData.Spam,
+
+        DrawerMenuData.GoogleApps,
+        DrawerMenuData.Calendar,
+        DrawerMenuData.Contacts,
+
+        DrawerMenuData.Separator,
+        DrawerMenuData.Settings,
+        DrawerMenuData.HelpAndFeedback
+    )
+
     Column {
         Text(
             text = "Gmail",

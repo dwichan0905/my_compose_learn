@@ -9,12 +9,11 @@ sealed class DrawerMenuData(
     val isDivider: Boolean = false,
     val isHeader: Boolean = false
 ) {
-    object Separator0: DrawerMenuData(isDivider = true)
+    object Separator: DrawerMenuData(isDivider = true)
     object AllInboxes: DrawerMenuData(
         icon = R.drawable.ic_baseline_all_inbox_24,
         title = "All inboxes"
     )
-    object Separator1: DrawerMenuData(isDivider = true)
     object Inbox: DrawerMenuData(
         icon = R.drawable.ic_baseline_inbox_24,
         title = "Inbox"
@@ -63,7 +62,6 @@ sealed class DrawerMenuData(
         icon = R.drawable.ic_baseline_mark_email_unread_24,
         title = "Contacts"
     )
-    object Separator2: DrawerMenuData(isDivider = true)
     object Settings: DrawerMenuData(
         icon = R.drawable.ic_baseline_settings_24,
         title = "Settings"
