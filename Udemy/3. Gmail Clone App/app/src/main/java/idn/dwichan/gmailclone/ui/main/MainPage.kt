@@ -1,6 +1,7 @@
 package idn.dwichan.gmailclone.ui.main
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
@@ -24,7 +25,10 @@ fun MainPage() {
         drawerContent = { MainDrawerMenu(scrollState) },
         bottomBar = { MainBottomNavBar() }
     ) {
+        // RecyclerView -> Vertical Linear Layout
+        LazyColumn {
 
+        }
     }
 }
 
