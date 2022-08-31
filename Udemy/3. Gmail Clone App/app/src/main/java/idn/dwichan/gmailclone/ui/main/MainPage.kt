@@ -1,6 +1,7 @@
 package idn.dwichan.gmailclone.ui.main
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -14,11 +15,12 @@ import idn.dwichan.gmailclone.ui.theme.GmailCloneTheme
 fun MainPage() {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
+    val scrollState = rememberScrollState()
 
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState, coroutineScope) },
-        drawerContent = { MainDrawerMenu() }
+        drawerContent = { MainDrawerMenu(scrollState) }
     ) {
 
     }
