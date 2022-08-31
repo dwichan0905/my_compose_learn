@@ -16,14 +16,18 @@ fun MainPage() {
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState, coroutineScope) },
-        drawerContent = {  }
+        drawerContent = { MainDrawerMenu() }
     ) {
 
     }
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
 @Composable
 fun MainPagePreview() {
     GmailCloneTheme {
