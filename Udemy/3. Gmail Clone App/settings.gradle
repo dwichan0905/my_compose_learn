@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Gmail Clone App"
+rootProject.name = "Gmail Clone"
 include ':app'
