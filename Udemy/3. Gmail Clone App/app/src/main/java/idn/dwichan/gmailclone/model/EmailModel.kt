@@ -6,5 +6,7 @@ data class EmailModel(
     val id: String,
     val sender: String,
     val time: String,
-    val title: String
+    val title: String,
+    val isRead: Boolean,
+    val isStarred: Boolean
 )

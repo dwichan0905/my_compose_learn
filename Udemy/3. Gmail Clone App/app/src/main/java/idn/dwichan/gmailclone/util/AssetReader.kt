@@ -1,6 +1,6 @@
 package idn.dwichan.gmailclone.util
 
-import androidx.activity.ComponentActivity
+import android.content.Context
 import idn.dwichan.gmailclone.model.EmailModel
 import org.json.JSONArray
 import java.io.IOException
@@ -8,9 +8,9 @@ import java.io.InputStream
 import java.nio.charset.Charset
 
 object AssetReader {
-    fun loadJsonFromAsset(activity: ComponentActivity): String? {
+    private fun loadJsonFromAsset(activity: Context): String? {
         val json: String? = try {
-            val `is`: InputStream = activity.assets.open("data.json")
+            val `is`: InputStream = activity.resources.assets.open("data.json")
             val size: Int = `is`.available()
             val buffer = ByteArray(size)
             `is`.read(buffer)
@@ -23,7 +23,7 @@ object AssetReader {
         return json
     }
 
-    fun getEmails(activity: ComponentActivity): List<EmailModel> {
+    fun getEmails(activity: Context): List<EmailModel> {
         val result = arrayListOf<EmailModel>()
         val json = loadJsonFromAsset(activity)
         if (json != null) {
@@ -37,7 +37,9 @@ object AssetReader {
                         email = obj.getString("email"),
                         contentMail = obj.getString("contentMail"),
                         time = obj.getString("time"),
-                        title = obj.getString("title")
+                        title = obj.getString("title"),
+                        isRead = obj.getBoolean("isRead"),
+                        isStarred = obj.getBoolean("isStarred")
                     )
                 )
             }

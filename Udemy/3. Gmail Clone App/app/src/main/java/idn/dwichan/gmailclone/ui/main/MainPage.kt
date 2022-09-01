@@ -1,20 +1,23 @@
 package idn.dwichan.gmailclone.ui.main
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import idn.dwichan.gmailclone.ui.component.HomeAppBar
 import idn.dwichan.gmailclone.ui.main.drawer.MainDrawerMenu
 import idn.dwichan.gmailclone.ui.theme.GmailCloneTheme
+import idn.dwichan.gmailclone.util.AssetReader
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainPage() {
+    val context = LocalContext.current
+
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
@@ -25,10 +28,11 @@ fun MainPage() {
         drawerContent = { MainDrawerMenu(scrollState) },
         bottomBar = { MainBottomNavBar() }
     ) {
-        // RecyclerView -> Vertical Linear Layout
-        LazyColumn {
-
-        }
+        val mailList = AssetReader.getEmails(context)
+        MailList(
+            mailList = mailList,
+            paddingValues = it
+        )
     }
 }
 
