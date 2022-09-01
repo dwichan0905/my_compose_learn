@@ -1,6 +1,9 @@
 package idn.dwichan.gmailclone.ui.main
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -10,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -34,7 +38,7 @@ import idn.dwichan.gmailclone.util.mockMailData
 import java.util.Random
 
 @Composable
-fun MailList(mailList: List<EmailModel>, paddingValues: PaddingValues) {
+fun MailList(mailList: List<EmailModel>, paddingValues: PaddingValues, scrollState: ScrollState) {
     Column(modifier = Modifier.padding(paddingValues)) {
         Text(
             text = "Inbox",
@@ -44,6 +48,7 @@ fun MailList(mailList: List<EmailModel>, paddingValues: PaddingValues) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
+                .scrollable(scrollState, Orientation.Vertical)
         ) {
             items(mailList) { item ->
                 MailItem(
@@ -170,7 +175,7 @@ fun MailItem(mail: EmailModel, modifier: Modifier = Modifier, onClick: () -> Uni
 )
 @Composable
 fun MailListPreview() {
-    MailList(mailList = mockMailData, paddingValues = PaddingValues(0.dp))
+    MailList(mailList = mockMailData, paddingValues = PaddingValues(0.dp), rememberScrollState())
 }
 
 @Preview(

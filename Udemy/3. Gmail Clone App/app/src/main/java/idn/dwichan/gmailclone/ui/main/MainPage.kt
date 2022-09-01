@@ -20,20 +20,23 @@ fun MainPage() {
     val context = LocalContext.current
 
     val scaffoldState = rememberScaffoldState()
+    val scaffoldScrollState = rememberScrollState()
+
     val coroutineScope = rememberCoroutineScope()
-    val scrollState = rememberScrollState()
+    val drawerScrollState = rememberScrollState()
 
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState, coroutineScope) },
-        drawerContent = { MainDrawerMenu(scrollState) },
+        drawerContent = { MainDrawerMenu(drawerScrollState) },
         bottomBar = { MainBottomNavBar() },
-        floatingActionButton = { GmailFab() }
+        floatingActionButton = { GmailFab(scaffoldScrollState) }
     ) {
         val mailList = AssetReader.getEmails(context)
         MailList(
             mailList = mailList,
-            paddingValues = it
+            paddingValues = it,
+            scrollState = scaffoldScrollState
         )
     }
 }
