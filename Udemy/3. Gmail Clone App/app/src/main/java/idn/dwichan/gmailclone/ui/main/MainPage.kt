@@ -8,8 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import idn.dwichan.gmailclone.ui.component.GmailFab
 import idn.dwichan.gmailclone.ui.component.HomeAppBar
-import idn.dwichan.gmailclone.ui.main.drawer.MainDrawerMenu
+import idn.dwichan.gmailclone.ui.component.drawer.MainDrawerMenu
 import idn.dwichan.gmailclone.ui.theme.GmailCloneTheme
 import idn.dwichan.gmailclone.util.AssetReader
 
@@ -26,7 +27,8 @@ fun MainPage() {
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState, coroutineScope) },
         drawerContent = { MainDrawerMenu(scrollState) },
-        bottomBar = { MainBottomNavBar() }
+        bottomBar = { MainBottomNavBar() },
+        floatingActionButton = { GmailFab() }
     ) {
         val mailList = AssetReader.getEmails(context)
         MailList(

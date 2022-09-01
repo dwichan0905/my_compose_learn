@@ -1,4 +1,4 @@
-package idn.dwichan.gmailclone.ui.main.bottomnav
+package idn.dwichan.gmailclone.ui.component.bottomnav
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Chat

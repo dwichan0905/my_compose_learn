@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import idn.dwichan.gmailclone.ui.main.bottomnav.BottomNavBarMenuData
+import idn.dwichan.gmailclone.ui.component.bottomnav.BottomNavBarMenuData
 import idn.dwichan.gmailclone.ui.theme.GmailCloneTheme
 
 @Composable
