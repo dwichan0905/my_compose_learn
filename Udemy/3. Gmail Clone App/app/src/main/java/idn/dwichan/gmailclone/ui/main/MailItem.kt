@@ -1,6 +1,6 @@
 package idn.dwichan.gmailclone.ui.main
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -57,9 +57,10 @@ fun MailList(mailList: List<EmailModel>, paddingValues: PaddingValues) {
 }
 
 @Composable
-fun MailItem(mail: EmailModel, modifier: Modifier = Modifier) {
+fun MailItem(mail: EmailModel, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
     Row(
         modifier = modifier
+            .clickable(onClick = onClick)
     ) {
         // Letter Text to replacing an empty user pic
         val random = Random()

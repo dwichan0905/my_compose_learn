@@ -2,6 +2,7 @@ package idn.dwichan.gmailclone.ui.main.drawer
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -86,6 +87,7 @@ fun MainDrawerItem(item: DrawerMenuData) {
             .fillMaxWidth()
             .height(48.dp)
             .padding(8.dp)
+            .clickable {  }
     ) {
         Image(
             painter = painterResource(id = item.icon!!),
